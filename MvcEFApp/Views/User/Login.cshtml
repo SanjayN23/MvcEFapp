@@ -1,0 +1,57 @@
+﻿@model MvcEFApp.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+
+    <script>
+        // Optional: You can add JavaScript logic to customize the appearance or behavior of success alerts
+        // For example, you might want to auto-hide the success alert after a few seconds
+        setTimeout(function () {
+            $('.alert-success').fadeOut('slow');
+        }, 5000); // 5000 milliseconds (5 seconds)
+    </script>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+
+    <script>
+        // Optional: You can add JavaScript logic to customize the appearance or behavior of error alerts
+        // For example, you might want to auto-hide the error alert after a few seconds
+        setTimeout(function () {
+            $('.alert-danger').fadeOut('slow');
+        }, 5000); // 5000 milliseconds (5 seconds)
+    </script>
+}
+
+<form asp-controller="User" asp-action="Login" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label for="Email">Email:</label>
+        <input type="email" id="Email" name="Email" asp-for="Email" class="form-control" required />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Password">Password:</label>
+        <input type="password" id="Password" name="Password" asp-for="Password" class="form-control" required />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+</form>

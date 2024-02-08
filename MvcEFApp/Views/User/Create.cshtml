@@ -1,0 +1,83 @@
+﻿@model MvcEFApp.Models.User
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    .dropdown-box {
+        position: relative;
+        display: inline-block;
+        width: 150px; /* Set the desired width */
+    }
+
+    .dropdown-box-select {
+        width: 100%;
+        padding-right: 30px; /* Adjust the distance from the right */
+    }
+
+    .arrow-icon {
+        position: absolute;
+        top: 50%;
+        right: 10px; /* Adjust the distance from the right */
+        transform: translateY(-50%);
+        pointer-events: none; /* Make sure the arrow doesn't interfere with select */
+    }
+
+    .login-link {
+        display: block;
+        margin-top: 10px; /* Adjust as needed */
+    }
+</style>
+
+<h2>Create User</h2>
+
+<form asp-controller="User" asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label for="Username">Username:</label>
+        <input type="text" id="Username" name="Username" asp-for="Username" class="form-control" required />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email:</label>
+        <input type="email" id="Email" name="Email" asp-for="Email" class="form-control" required />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Password">Password:</label>
+        <input type="password" id="Password" name="Password" asp-for="Password" class="form-control" required />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="Role">Role:</label>
+        <div class="dropdown-box">
+            <select id="Role" name="Role" asp-for="Role" class="form-control dropdown-box-select" required>
+                <option value="User">User</option>
+                <option value="Admin">Admin</option>
+            </select>
+            <span class="arrow-icon">&#9660;</span>
+        </div>
+        <span asp-validation-for="Role" class="text-danger"></span>
+    </div>
+    <br/>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+</form>
+
+<br />
+
+<div>
+    <span style="display: inline-block;">Are you already a user?</span>
+    <span class="login-link" style="display: inline-block; margin-left: 5px;">
+        <a asp-controller="User" asp-action="Login">Login</a>
+    </span>
+</div>
+
+
+

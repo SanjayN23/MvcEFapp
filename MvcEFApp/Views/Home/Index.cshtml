@@ -1,0 +1,105 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="site.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 4px auto;
+            text-align: center;
+        }
+
+        .link-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .link {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #2ecc71;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
+        }
+
+            .link:hover {
+                background-color: #27ae60;
+            }
+    </style>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <script>
+            alert('@TempData["SuccessMessage"]');
+        </script>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            alert('@TempData["ErrorMessage"]');
+        </script>
+    }
+
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to Hospital Management</h1>
+    </div>
+
+    <div class="container">
+        <!-- Display success message if available -->
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        <!-- Display error message if available -->
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
+        <div class="link-container">
+            <a href="/Doctor/Create" class="link">Add New Doctor</a>
+            <a href="/Patient/Create" class="link">Add New Patient</a>
+            <a href="/Appointment/Create" class="link">Schedule Appointment</a>
+        </div>
+    </div>
+</body>
+</html>
